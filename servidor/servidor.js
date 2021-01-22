@@ -17,7 +17,7 @@ io.on("connection", (socket) => {
     //socket.broadcast.emit manda el mensaje a todos los clientes excepto al que ha enviado el mensaje
     socket.broadcast.emit("mensajes", {
       nombre: nombre,
-      mensaje: `${nombre} ha entrado en la sala del chat`,
+      mensaje: `${nombre} se ha unido a sala del chat`,
     });
   });
 
@@ -29,9 +29,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     io.emit("mensajes", {
       servidor: "Servidor",
-      mensaje: `${nombre} ha abandonado la sala`,
+      mensaje: `El usuario ${nombre} ha abandonado el chat`,
     });
   });
 });
 
-servidor.listen(5000, () => console.log("Servidor inicializado"));
+// configuracion de puerto de servidor
+servidor.listen(5000, () => console.log("El servidor ha iniciado correctamente"));
